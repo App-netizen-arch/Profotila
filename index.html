@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Counsel AI — local-first legal AI copilot UI prototype" />
+  <title>Counsel AI — Legal AI Copilot</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="onboarding" class="overlay hidden">
+    <div class="onboard-card">
+      <div class="progress"><span id="progressFill"></span></div>
+      <div class="eyebrow">COUNSEL AI · FIRST LAUNCH</div>
+      <div id="onboardStep"></div>
+    </div>
+  </div>
+
+  <main class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <div class="brand-mark">C</div><strong>Counsel AI</strong>
+        <button class="icon-btn" data-action="collapse" aria-label="Collapse sidebar">‹</button>
+      </div>
+      <button class="primary full" data-action="new-chat">＋ New conversation</button>
+      <div class="eyebrow section-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-item active" data-screen="chat"><span>◉</span>Chat</button>
+        <button class="nav-item" data-screen="research"><span>⌕</span>Research</button>
+        <button class="nav-item" data-screen="documents"><span>▤</span>Documents</button>
+      </nav>
+      <div class="eyebrow section-label">RECENT</div>
+      <div class="history"><div><b>Breach of contract remedies</b><small>Today</small></div><div><b>Employment termination memo</b><small>Yesterday</small></div><div><b>NDA for external counsel</b><small>Mon</small></div></div>
+      <div class="sidebar-spacer"></div>
+      <nav><button class="nav-item" data-screen="settings"><span>⚙</span>Settings</button></nav>
+      <div class="privacy-line"><span class="dot green"></span><span>Private · Local mode</span><button class="tip" title="Prompts stay on this device in local mode">i</button></div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div class="top-left"><button class="icon-btn" data-action="expand" aria-label="Open sidebar">☰</button><strong id="pageTitle">Assistant</strong></div>
+        <div class="mode-control" role="tablist" aria-label="AI mode">
+          <button class="mode active" data-mode="local"><span class="dot green"></span>Local</button>
+          <button class="mode" data-mode="api"><span class="dot amber"></span>API</button>
+          <button class="mode" data-mode="research"><span class="dot amber"></span>Research</button>
+          <button class="mode" data-mode="tools"><span class="dot amber"></span>Tools</button>
+        </div>
+        <div class="top-actions"><button class="icon-btn" id="darkToggle" title="Dark mode">◐</button><div class="avatar">A</div></div>
+      </header>
+
+      <div id="view-chat" class="view">
+        <div class="chat-wrap">
+          <div class="chat-meta"><span class="eyebrow">TODAY</span><button class="text-btn">Load earlier messages</button></div>
+          <div class="bubble user">What remedies are available for a material breach of contract under English law?</div>
+          <article class="assistant-card">
+            <div class="assistant-head"><div class="mini-mark">C</div><b>Counsel AI</b><span class="spacer"></span><span class="privacy-text local">Local</span></div>
+            <p>Under English law, a material breach may give the innocent party a right to terminate the contract and/or claim damages, depending on the contractual terms and the nature of the breach. Courts generally assess whether the breach goes to the root of the contract or substantially deprives the innocent party of the benefit for which it contracted.</p>
+            <p><b>Potential remedies</b></p>
+            <p>1. <b>Damages</b> — compensation for loss caused by the breach, subject to causation, remoteness and mitigation.<br>2. <b>Termination</b> — potentially available where the breach is repudiatory or the contract provides a termination right.<br>3. <b>Specific relief</b> — available in limited circumstances where damages are not an adequate remedy.</p>
+            <button class="outline small" id="sourceToggle">▣ Sources (3)</button>
+            <div id="sources" class="sources">
+              <div class="citation"><div><b>Legislation.gov.uk</b><code>https://www.legislation.gov.uk/</code></div><strong>High</strong></div>
+              <div class="citation"><div><b>UK Supreme Court</b><code>https://www.supremecourt.uk/</code></div><strong>High</strong></div>
+              <div class="citation"><div><b>BAILII</b><code>https://www.bailii.org/</code></div><strong class="medium">Medium</strong></div>
+            </div>
+          </article>
+          <div class="hint-card"><span>TRY ONE OF THESE</span><div class="chips"><button>Draft a client letter about late payment</button><button>Research limitation periods in England</button><button>Create an NDA for a contractor</button></div></div>
+        </div>
+        <div class="composer-wrap">
+          <div id="privacyNotice" class="privacy-notice"><span class="dot green"></span>Local mode · Data stays on this device</div>
+          <div class="composer"><button class="icon-btn" title="Attach file">⌕</button><textarea placeholder="Ask a legal question, research a topic, or draft a document"></textarea><button class="send">↑</button></div>
+          <div class="composer-foot"><span>Ctrl+K · command palette</span><span>Confidentiality controls are always visible</span></div>
+        </div>
+      </div>
+
+      <div id="view-research" class="view hidden"></div>
+      <div id="view-documents" class="view hidden"></div>
+      <div id="view-settings" class="view hidden"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
